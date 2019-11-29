@@ -3,6 +3,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
+from app import server
 from apps import sensors, daily_readings
 
 
@@ -31,4 +32,4 @@ def display_page(pathname):
         return '404'
 
 if __name__ == '__main__':
-    app.run_server(debug=False, port=5000, threaded=True)
+    app.run_server(debug=False, threaded=True)
