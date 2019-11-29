@@ -16,6 +16,10 @@ layout_index = html.Div([
     dcc.Link('Sensor Data', href='/apps/sensors'),
     html.Br(),
     dcc.Link('Daily Readings per Site', href='/apps/daily_readings'),
+    html.P('Daily yield per County [Not implemented]'),
+    html.P('Monthly yield per County [Not implemented]'),
+    html.P('Monthly average yield per household per County [Not Implemented]'),
+    html.P('Monthly average yield per household per Site [Not Implemented]')
 ])
 
 

@@ -81,9 +81,14 @@ sensor_grouped_df = hydrate_grouped_sensor_df(sensor_grouped_df, sensors_df)
 traces = []
 for df in sensor_grouped_df:
     df['uptime'].fillna(0, inplace=True)
+    df['hover'] = "Installed on: " + df['install_date'] + \
+    "\nRemoved on: " + df['removal_date'] +\
+    "\nCounty: " + df['county'] + \
+    "\nSite Name: " + df['site_name'] 
     temp_trace = go.Bar(
         x=df['mwater_id'],
         y=df['count'],
+        hovertext=df['hover'],
         showlegend=False,
         marker=dict(
             color=df['uptime'],
@@ -97,8 +102,9 @@ for df in sensor_grouped_df:
 
 layout = html.Div(children=[
     html.H1(children='Sensor Data'),
-    html.Div(children='Dash: A web application framework for Python.'),
-
+    html.Hr(),
+    dcc.Link('Home', href='/'),
+    html.Hr(),
     dcc.Graph(
         id='sensors',
         figure=dict(
@@ -109,8 +115,11 @@ layout = html.Div(children=[
                 xaxis = dict(title = 'Site Ids', type='category'),
                 yaxis = dict(title = 'Sensor Count')
             )
-        )
-    ),
+        ),
+        style={'width':'100%', 'display':'inline-block'}
+    )
 
-    dcc.Link('Home', href='/')
 ])
+    
+    
+
